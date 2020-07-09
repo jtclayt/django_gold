@@ -10,9 +10,8 @@ def index(request):
     request.session['gold'] = 0
   return render(request, 'index.html')
 
-def process_gold(request):
+def process_gold(request, location):
   goldMap = {'farm': [10,20], 'cave': [5,10], 'house': [2,5], 'casino': [-50,50]}
-  location = request.POST.get('location')
   bounds = goldMap[location]
   result = randint(bounds[0], bounds[1])
   request.session['gold'] += result
@@ -22,9 +21,7 @@ def process_gold(request):
     'location': location,
     'time': datetime.now().strftime('%H:%M %p %d/%m/%y')
   }
-  print(log)
   request.session['logs'].insert(0, log)
-  print(request.session['logs'])
   return redirect(index)
 
 def reset(request):

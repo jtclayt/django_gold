@@ -21,31 +21,27 @@
   </nav>
   <main class="container">
     <h2>Your Gold <span>{{ request.session.gold }}</span></h2>
-    <div id="form-container">
-      <form class="card" action="/process_gold" method="POST">{% csrf_token %}
+    <div id="card-container">
+      <div class="card">
         <h3>Farm</h3>
         <p>(earns 10-20 gold)</p>
-        <input type="hidden" name="location" value="farm">
-        <input class="btn btn-warning" type="submit" value="Find Gold!">
-      </form>
-      <form class="card" action="/process_gold" method="POST">{% csrf_token %}
+        <a class="btn btn-warning" href="/process_gold/farm">Find Gold!</a>
+      </div>
+      <div class="card">
         <h3>Cave</h3>
         <p>(earns 5-10 gold)</p>
-        <input type="hidden" name="location" value="cave">
-        <input class="btn btn-warning" type="submit" value="Find Gold!">
-      </form>
-      <form class="card" action="/process_gold" method="POST">{% csrf_token %}
+        <a class="btn btn-warning" href="/process_gold/cave">Find Gold!</a>
+      </div>
+      <div class="card">
         <h3>House</h3>
         <p>(earns 2-5 gold)</p>
-        <input type="hidden" name="location" value="house">
-        <input class="btn btn-warning" type="submit" value="Find Gold!">
-      </form>
-      <form class="card" action="/process_gold" method="POST">{% csrf_token %}
+        <a class="btn btn-warning" href="/process_gold/house">Find Gold!</a>
+      </div>
+      <div class="card">
         <h3>Casino</h3>
         <p>(earns/takes 0-50 gold)</p>
-        <input type="hidden" name="location" value="casino">
-        <input class="btn btn-warning" type="submit" value="Find Gold!">
-      </form>
+        <a class="btn btn-warning" href="/process_gold/casino">Find Gold!</a>
+      </div>
     </div>
     <h3>Activites</h3>
     <ul id="activities">
