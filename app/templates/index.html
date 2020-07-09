@@ -14,10 +14,41 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
     crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="{% static 'js/index.js' %}"></script>
 </head>
 <body>
-  <h1>Hello</h1>
+  <div class="container">
+    <header>
+      <h1>Welcome to the Great Number Game!</h1>
+      <p>I am thinking of a number between 1 and 100</p>
+      <p>Take a guess</p>
+    </header>
+    <main>
+      {% if 'isWin' in session: %}
+      {% if session['isWin']: %}
+      <div class="alert alert-success">
+        <h2>{{ session['answer'] }} was the number!</h2>
+      {% else: %}
+      <div class="alert alert-danger">
+        <h2>You lose!</h2>
+      {% endif %}
+        <a class='btn btn-info' href="/reset">Play again?</a>
+      </div>
+      {% else: %}
+      {% if 'result' in session: %}
+      <div class="alert alert-danger">
+        <h2>{{ session['result'] }}</h2>
+      </div>
+      {% endif %}
+      <form action="/guess" method="POST">
+        <p>{{ session['remainingGuesses'] }} guesses remaining</p>
+        <div class="form-group">
+          <label for="guess">Your guess:</label>
+          <input name="guess" id="guess" type="number" min="1" max="100" required>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Make Guess">
+      </form>
+      {% endif %}
+    </main>
+  </div>
 </body>
 </html>
